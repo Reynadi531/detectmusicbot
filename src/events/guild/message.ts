@@ -13,7 +13,7 @@ const run: RunFunction = async(client, message: Message) => {
     if(!command) return;
     if(!message.guild.me.hasPermission(command.permissionBot)) return message.reply("Bot doesn't have permission to execute the command")
     if(!message.member.hasPermission(command.permissionUser)) return message.reply("You don't have permission for this command")
-    command.run(client, message, args).catch((reason: any) => message.channel.send(client.embed({ description: reason, title: 'Erorr ocure' }, message)))
+    command.run(client, message, args).catch((reason: any) => message.channel.send(client.embed({ description: reason, title: 'Erorr ocure' })))
 }
 
 export { name, run }

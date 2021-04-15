@@ -7,7 +7,7 @@ const category: string = "Utility";
 const aliases: string[] = ['p'];
 const run: RunFunction = async(client, message) => {
     return message.channel.send('Pinging...').then(sent => {
-        sent.edit(client.embed({ title: `✅ Roundtrip latency: ${sent.createdTimestamp - message.createdTimestamp}ms\n✅ WebSocket: ${client.ws.ping}ms` }, message));
+        sent.edit(client.embed({ title: `✅ Roundtrip latency: ${sent.createdTimestamp - message.createdTimestamp}ms\n✅ WebSocket: ${client.ws.ping}ms` }));
     });
 }
 
