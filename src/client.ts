@@ -31,8 +31,8 @@ class Bot extends Client {
             this.on(file.name, file.run.bind(null, this));
         });
     }
-    public embed(options: MessageEmbedOptions, message: Message): MessageEmbed {
-        return new MessageEmbed({ ...options, color: 'RANDOM' }).setTimestamp().setFooter(this.user.username);
+    public embed(options: MessageEmbedOptions): MessageEmbed {
+        return new MessageEmbed({ ...options, color: 'RANDOM' }).setTimestamp();
     }
 }
 
