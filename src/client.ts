@@ -5,10 +5,12 @@ import { Client, Message, Collection, Intents, MessageEmbed, MessageEmbedOptions
 import { Config } from './types/config';
 import { Command } from './types/command';
 import { Event } from './types/event';
+import monk from 'monk'
 
 class Bot extends Client {
     public globPromise = promisify(Glob);
     public Config: Config;
+    public db = monk(process.env.MONGO_URI);
     public logger: Consola = consola;
     public commands: Collection<string, Command> = new Collection();
     public events: Collection<string, Event> = new Collection();
@@ -16,6 +18,8 @@ class Bot extends Client {
         super({ ws: { intents: Intents.ALL } })
     }
     public async start(config: Config): Promise<any> {
+        this.db.then(e => this.logger.info('Database connected'))
+
         this.Config = config;
         this.login(config.token);
         const commandFiles: string[] = await this.globPromise(`${__dirname}/commands/**/*{.ts,.js}`);
